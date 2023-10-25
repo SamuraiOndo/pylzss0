@@ -146,7 +146,7 @@ int lzss_encode(struct lzss_io *io)
 		(2 bytes).  Thus, eight units require at most 16 bytes of code. */
 	code_buf_ptr = mask = 1;
 	s = 0;  r = N - F;
-	for (i = s; i < r; i++) ctx.text_buf[i] = ' ';  /* Clear the buffer with
+	for (i = s; i < r; i++) ctx.text_buf[i] = 0x00;  /* Clear the buffer with
 		any character that will appear often. */
         
 	for (len = 0; len < F && ((c = io->rd(io->i)) != EOF); len++)
@@ -216,7 +216,7 @@ int lzss_decode(struct lzss_io *io)
 	unsigned int  flags;
 	unsigned char text_buf[N + F - 1];
 	
-	for (i = 0; i < N - F; i++) text_buf[i] = ' ';
+	for (i = 0; i < N - F; i++) text_buf[i] = 0x00;
 	r = N - F;  flags = 0;
 	for ( ; ; ) {
 		if (((flags >>= 1) & 256) == 0) {
