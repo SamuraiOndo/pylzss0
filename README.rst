@@ -9,3 +9,11 @@ Installation
 
     python setup.py install
 
+
+Usage
+-----
+::
+
+    lzss.decompress(data)
+    lzss.compress(data)
+
