@@ -11,7 +11,8 @@ Installation
 
 
 Usage
------
+------------
+
 ::
 
     lzss.decompress(data)
